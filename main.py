@@ -203,7 +203,7 @@ class Face_Recognition_System:
         
         def face_data(self):
                 self.new_window=Toplevel(self.root)
-                self.app=Face_Recognition,command=self.face_data(self.new_window)
+                self.app=Face_Recognition(self.new_window)
  
 
 if __name__=="__main__":

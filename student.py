@@ -67,7 +67,7 @@ class Student:
 
 
         img3=Image.open(r"img\bgimg.jpg")
-        img3=img3.resize((1300,710),Image.ANTIALIAS)
+        img3=img3.resize((10,710),Image.ANTIALIAS)
         self.photoimg3=ImageTk.PhotoImage(img3)
 
         bg_img=Label(self.root,image=self.photoimg3)
@@ -274,7 +274,7 @@ class Student:
 
 
 ################### Update Button ###################
-        update_btn=Button(btn_frame,text="Upload",font=("times new roman",13,"bold"),bg="blue",fg="white",width=17)
+        update_btn=Button(btn_frame,text="Upload",command=self.update_data,font=("times new roman",13,"bold"),bg="blue",fg="white",width=17)
         update_btn.grid(row=0,column=1)
 
 ################################### Delete Button #################################################33
