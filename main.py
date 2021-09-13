@@ -2,19 +2,24 @@ from tkinter import*
 from tkinter import ttk
 from PIL import Image,ImageTk
 from student import Student
+import tkinter as tk
 import os
+from time import strftime
+from datetime import datetime
 from train import Train
 from face_recognition import Face_Recognition
+from attendance import Attendance
+from developer import Developer
+from help import Help
 
 class Face_Recognition_System:
     def __init__(self,root,):
         self.root=root
-        self.root.geometry("1280x720+0+0")
+        self.root.geometry("1530x790+0+0")
         self.root.title("Face Recognition System")
 
-        
-#       first image
-        img=Image.open(r"img\Stanford.jpg")
+# first image
+        img=Image.open(r"img\BestFacialRecognition.jpg")
         img=img.resize((500,130),Image.ANTIALIAS)
         self.photoimg=ImageTk.PhotoImage(img)
 
@@ -22,7 +27,7 @@ class Face_Recognition_System:
         f_lbl.place(x=0,y=0,width=500,height=130)
 
 
-#second image
+# second image
 
         img1=Image.open(r"img\facialrecognition.png")
         img1=img1.resize((500,130),Image.ANTIALIAS)
@@ -34,42 +39,53 @@ class Face_Recognition_System:
 
 
 
-#third image 
+# third image 
 
 
-        img2=Image.open(r"img\u.jpg")
-        img2=img2.resize((500,130),Image.ANTIALIAS)
+        img2=Image.open(r"img\images.jpg")
+        img2=img2.resize((530,130),Image.ANTIALIAS)
         self.photoimg2=ImageTk.PhotoImage(img2)
 
         f_lbl=Label(self.root,image=self.photoimg2)
-        f_lbl.place(x=1000,y=0,width=550,height=130)
+        f_lbl.place(x=1000,y=0,width=530,height=130)
 
 
-#                   background image
+# background image
 
 
-        img3=Image.open(r"img\bgimg.jpg")
-        img3=img3.resize((1300,710),Image.ANTIALIAS)
+        img3=Image.open(r"img\wp2551980.jpg")
+        img3=img3.resize((1530,710),Image.ANTIALIAS)
         self.photoimg3=ImageTk.PhotoImage(img3)
 
         bg_img=Label(self.root,image=self.photoimg3)
-        bg_img.place(x=0,y=130,width=550,height=130)
+        bg_img.place(x=0,y=130,width=1530,height=710)
 
 
         title_lbl=Label(bg_img,text="FACE RECOGNITION ATTENDENCE SYSTEM ",font=("times new roman",35,"bold"),bg="white",fg="red")
-        title_lbl.place(x=0,y=0,width=1500,height=445)
+        title_lbl.place(x=0,y=0,width=1530,height=45)
+
+        ##### time #####
+        def time():
+                string = strftime('%H:%M:%S %p')
+                lbl.config(text = string)
+                lbl.after(1000 , time)
+        
+        lbl=Label(title_lbl,font=("times new roman",14,"bold"),background="white",foreground="blue")
+        lbl.place(x=0,y=0,width=110,height=50)
+        time()
+
 
 # Student Button
 
-        img4=Image.open(r"img\student.jpg")
-        img4=img4.resize((220,220),Image.ANTIALIAS)
+        img4=Image.open(r"img\gettyimages-1022573162.jpg")
+        img4=img4.resize((1530,710),Image.ANTIALIAS)
         self.photoimg4=ImageTk.PhotoImage(img4)
 
-        b1=Button(bg_img,image=self.photoimg4,command=self.student_details,cursor="hand2")
+        b1=Button(bg_img,image=self.photoimg4,cursor="hand2",command=self.student_details)
         b1.place(x=200,y=100,width=220,height=220)
 
 
-        b1_1=Button(bg_img,text="Student text",command=self.student_details,cursor="hand2",font=("times new roman",15,"bold"),bg="darkblue",fg="white")
+        b1_1=Button(bg_img,text="Student Details",cursor="hand2",command=self.student_details,font=("times new roman",15,"bold"),bg="darkblue",fg="white")
         b1_1.place(x=200,y=300,width=220,height=40)
 
 
@@ -89,37 +105,34 @@ class Face_Recognition_System:
 
 # Attendance Button
 
-        img6=Image.open(r"img\attendance.jpg")
+        img6=Image.open(r"img\report.jpg")
         img6=img6.resize((220,220),Image.ANTIALIAS)
         self.photoimg6=ImageTk.PhotoImage(img6)
 
-        b1=Button(bg_img,image=self.photoimg6,cursor="hand2")
+        b1=Button(bg_img,image=self.photoimg6,cursor="hand2",command=self.attendance_data)
         b1.place(x=800,y=100,width=220,height=220)
 
 
-        b1_1=Button(bg_img,text="Attendance ",cursor="hand2",font=("times new roman",15,"bold"),bg="darkblue",fg="white")
+        b1_1=Button(bg_img,text="Attendance ",cursor="hand2",command=self.attendance_data,font=("times new roman",15,"bold"),bg="darkblue",fg="white")
         b1_1.place(x=800,y=300,width=220,height=40)
 
 
 
 # Help Button
 
-        img7=Image.open(r"img\help.jpg")
+        img7=Image.open(r"img\help-desk-customer-care-team-icon-blue-square-button-isolated-reflected-abstract-illustration-89657179.jpg")
         img7=img7.resize((220,220),Image.ANTIALIAS)
         self.photoimg7=ImageTk.PhotoImage(img7)
 
-        b1=Button(bg_img,image=self.photoimg7,cursor="hand2")
+        b1=Button(bg_img,image=self.photoimg7,cursor="hand2",command=self.help_data)
         b1.place(x=1100,y=100,width=220,height=220)
 
 
-        b1_1=Button(bg_img,text="Help Desk ",cursor="hand2",font=("times new roman",15,"bold"),bg="darkblue",fg="white")
+        b1_1=Button(bg_img,text="Help Desk ",cursor="hand2",command=self.help_data,font=("times new roman",15,"bold"),bg="darkblue",fg="white")
         b1_1.place(x=1100,y=300,width=220,height=40)
 
 
-#                  New ROw 
-
-
-
+#  NEW ROW
 
 # Train Face Button
 
@@ -150,15 +163,15 @@ class Face_Recognition_System:
 
 # Developer Button
 
-        img10=Image.open(r"img\Team-Management_Software_Development.jpg")
+        img10=Image.open("./img/Team.jpg")
         img10=img10.resize((220,220),Image.ANTIALIAS)
-        self.photoimg10=ImageTk.PhotoImage(img9)
+        self.photoimg10=ImageTk.PhotoImage(img10)
 
-        b1=Button(bg_img,image=self.photoimg10,cursor="hand2")
+        b1=Button(bg_img,image=self.photoimg10,cursor="hand2",command=self.developer_data)
         b1.place(x=800,y=400,width=220,height=220)
 
 
-        b1_1=Button(bg_img,text="Developer",cursor="hand2",font=("times new roman",15,"bold"),bg="darkblue",fg="white")
+        b1_1=Button(bg_img,text="Developer",cursor="hand2",command=self.developer_data,font=("times new roman",15,"bold"),bg="darkblue",fg="white")
         b1_1.place(x=800,y=600,width=220,height=40)
 
 
@@ -168,70 +181,53 @@ class Face_Recognition_System:
         img11=img11.resize((220,220),Image.ANTIALIAS)
         self.photoimg11=ImageTk.PhotoImage(img11)
 
-        b1=Button(bg_img,image=self.photoimg11,cursor="hand2")
+        b1=Button(bg_img,image=self.photoimg11,cursor="hand2",command=self.iExit)
         b1.place(x=1100,y=400,width=220,height=220)
 
 
-        b1_1=Button(bg_img,text="Exit",cursor="hand2",font=("times new roman",15,"bold"),bg="darkblue",fg="white")
+        b1_1=Button(bg_img,text="Exit",cursor="hand2",command=self.iExit,font=("times new roman",15,"bold"),bg="darkblue",fg="white")
         b1_1.place(x=1100,y=600,width=220,height=40)
 
 
+###################### function button ############################
 
+    def student_details(self):
+        self.new_window=Toplevel(self.root)
+        self.app=Student(self.new_window)
+    
 
+    def train_data(self):
+        self.new_window=Toplevel(self.root)
+        self.app=Train(self.new_window)
+    
+    def face_data(self):
+        self.new_window=Toplevel(self.root)
+        self.app=Face_Recognition(self.new_window)
 
+    def attendance_data(self):
+        self.new_window=Toplevel(self.root)
+        self.app=Attendance(self.new_window)
+    
+    def developer_data(self):
+        self.new_window=Toplevel(self.root)
+        self.app=Developer(self.new_window)
 
+    def help_data(self):
+        self.new_window=Toplevel(self.root)
+        self.app=Help(self.new_window)
 
+    def open_img(self):
+        os.startfiles("data")
 
-        def open_img(self):
-                os.startfiles("data")
-
-
-
-
-
-        ######################3 function button ##################################################################
-
-
-        def student_details(self):
-                self.new_window=Toplevel(self.root)
-                self.app=Student(self.new_window)
-        
-
-        def train_data(self):
-                self.new_window=Toplevel(self.root)
-                self.app=Train(self.new_window)
-        
-        def face_data(self):
-                self.new_window=Toplevel(self.root)
-                self.app=Face_Recognition(self.new_window)
+    def iExit(self):
+        self.iExit=tk.messagebox.askyesno("Face Recognition" , "Are you sure you want to exit this project" , parent = self.root)
+        if self.iExit>0:
+            self.root.destroy()
+        else:
+            return
  
 
-if __name__=="__main__":
+if __name__ == "__main__":
     root=Tk()
     obj=Face_Recognition_System(root)
     root.mainloop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
